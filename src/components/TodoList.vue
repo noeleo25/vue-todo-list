@@ -1,34 +1,41 @@
 <template>
   <div>
     <div class="input-container">
-      <form class="item-form">
-        <div class="">
-          <md-field>
+      <form class="md-layout item-form">
+        <div 
+          class="field-group"
+          >
+          <md-field :class="invalidInputForm ? 'error' : ''">
             <label for="new-todo-item">Item</label>
-            <md-input type="text" name="new-todo-item" id="new-todo-item" autocomplete="off" v-model="newItemName" />
-            <span class="md-error" v-if="invalidInputForm">Please write something</span>
+            <md-input 
+              class="mat-input-element"
+              type="text" 
+              name="new-todo-item" 
+              id="new-todo-item" 
+              autocomplete="off" 
+              v-model="newItemName"
+              @keyup.enter="addItem($event)"
+              @focus="isInputActive = true"
+              @blur="isInputActive = false" 
+            />
           </md-field>
+          <md-button
+            @click.stop="addItem($event)"
+            :disabled="newItemName.length <= 0"
+            class="md-raised md-primary add-button"
+            color="primary"
+          >
+            Add
+          </md-button>
         </div>
-        <input 
-          type="text" 
-          v-model="newItemName" 
-          autocomplete="off"
-          @keyup.enter="addItem($event)"
-          @focus="isInputActive = true"
-          @blur="isInputActive = false"
-        >
-        <md-button
-          @click.stop="addItem($event)"
-          :disabled="newItemName.length <= 0"
-          class="md-raised md-primary add-button"
-          color="primary"
-        >
-          Add
-        </md-button>
+          
       </form>
-      <div class="error-messages" v-if="invalidInputForm">
-        <p class="error-msg"> Please write something </p>
-      </div>
+      <p 
+        class="error-msg"
+        v-if="invalidInputForm"
+      > 
+      Please write something
+      </p>
 
     </div>
     <div class="todo-area">
@@ -133,16 +140,32 @@
   margin-left: auto;
   margin-right: auto;
 }
-.md-field:before{
-
+.field-group{
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.md-field{
+  padding-top: 0;
+  color: inherit;
+}
+.md-field.error{
+  color: #f44336;
 }
 .md-field:after{
-
+  background-color: #3f51b5;
+}
+.md-field.error:after{
+  background-color:#f44336;
 }
 .input-width {
   width: 20%;
 }
-
+.error-msg{
+  color: #f44336;
+  margin: 0;
+  font-size: 16px;
+}
 .add-button {
   margin-left: 8px;
   background-color: #3f51b5;
@@ -192,30 +215,24 @@
   background: white;
   font-size: 16px;
 }
-
-.cdk-drag-preview {
-  box-sizing: border-box;
-  border-radius: 4px;
-  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-  0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+.mat-input-element {
+    font: inherit;
+    background: transparent;
+    color: currentColor;
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    vertical-align: bottom;
+    text-align: inherit;
+    box-sizing: content-box;
+    height: 48px !important;
 }
-
-.cdk-drag-placeholder {
-  opacity: 0;
-}
-
-.cdk-drag-animating {
-  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-}
-
 .example-box:last-child {
   border: none;
 }
-
-.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
-  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-}
-
 .icons-box {
   display: grid;
   grid-auto-flow: column;

@@ -51,6 +51,10 @@ html, body{
   font: 400 20px/32px lato, sans-serif;
 }
 
+h2{
+  font-size: 24px;
+}
+
 
 
 </style>
