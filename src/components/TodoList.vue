@@ -1,7 +1,14 @@
 <template>
   <div>
     <div class="input-container">
-      <form>
+      <form class="item-form">
+        <div class="">
+          <md-field>
+            <label for="new-todo-item">Item</label>
+            <md-input type="text" name="new-todo-item" id="new-todo-item" autocomplete="off" v-model="newItemName" />
+            <span class="md-error" v-if="invalidInputForm">Please write something</span>
+          </md-field>
+        </div>
         <input 
           type="text" 
           v-model="newItemName" 
@@ -10,26 +17,19 @@
           @focus="isInputActive = true"
           @blur="isInputActive = false"
         >
-        <button
+        <md-button
           @click.stop="addItem($event)"
           :disabled="newItemName.length <= 0"
-          class="add-button"
+          class="md-raised md-primary add-button"
           color="primary"
         >
           Add
-        </button>
+        </md-button>
       </form>
       <div class="error-messages" v-if="invalidInputForm">
         <p class="error-msg"> Please write something </p>
       </div>
-    <!-- <mat-error
-      *ngIf="
-        todoForm.get('item')?.invalid &&
-        (todoForm.get('item')?.dirty || todoForm.get('item')?.touched)
-      "
-    > 
-      Please write something.
-    </mat-error> -->
+
     </div>
     <div class="todo-area">
       <div class="example-container">
@@ -46,9 +46,10 @@
               class="example-box"
             >
               {{ item.description }}
-              <button @click="deleteTodoItem(item)" color="warn">
-                <!--DELETE ICON HERE -->
-              </button>
+              <md-button class="md-icon-button md-btn-accent" 
+               @click="deleteTodoItem(item)">
+                <span class="material-icons">delete</span>
+              </md-button>
             </div>
           </draggable>
         </div>
@@ -68,12 +69,14 @@
               :key="index" class="example-box" :class="index">
               {{ item.description }}
               <div class="icons-box">
-                <button @click="deleteDoneItem(item)" color="warn">
-                  <!--DELETE ICON HERE -->
-                </button>
-                <button color="accent">
-                  <!--CHECK ICON HERE -->
-                </button>
+                <md-button 
+                  class="md-icon-button md-btn-accent" 
+                  @click="deleteDoneItem(item)">
+                  <span class="material-icons">delete</span>
+                </md-button>
+                <md-button class="md-icon-button md-btn-second">
+                  <span class="material-icons">check_circle </span>
+                </md-button>
               </div>
             </div>
           </draggable>
@@ -125,12 +128,30 @@
 </script>
 
 <style scoped>
+.item-form{
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.md-field:before{
+
+}
+.md-field:after{
+
+}
 .input-width {
   width: 20%;
 }
 
 .add-button {
   margin-left: 8px;
+  background-color: #3f51b5;
+  border-radius: 4px;
+  color: #fff;
+  text-transform: capitalize;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .input-container {

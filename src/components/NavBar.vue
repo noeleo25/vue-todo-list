@@ -1,6 +1,8 @@
 <template>
   <div class="navbar">
-    <!-- TODO burger icon -->
+    <md-button class="md-icon-button">
+      <span class="material-icons">menu</span>
+    </md-button>
     <span>My To-do list</span>
     <span class="example-spacer"></span>
   </div>
@@ -21,5 +23,6 @@
     font: 400 20px/32px lato, sans-serif;
     background: #f5f5f5;
     color: rgba(0,0,0,.87);
+    height: 64px;
 }
 </style>
