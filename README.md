@@ -38,4 +38,5 @@ npm run test:unit
   * vue material to give a look and feel oriented to material design
   * material design icons from google
 6. Finally I added some styles to make it more like the original. I also added responsive styles to make it adaptable for different viewport sizes.
-Note: The design of the original application has many issues: different design approaches, ununiform styles, not responsive design, etc. But I followed instructions and tried to make it as much close to it.
+
+*Note: The design of the original application has many issues: different design approaches, ununiform styles, not responsive design, etc. But I followed instructions and tried to make it as much close to it.*
