@@ -13,7 +13,7 @@
               name="new-todo-item" 
               id="new-todo-item" 
               autocomplete="off" 
-              v-model="newItemName"
+              v-model.trim="newItemName"
               @keyup.enter="addItem($event)"
               @focus="isInputActive = true"
               @blur="isInputActive = false" 
@@ -21,6 +21,7 @@
           </md-field>
           <md-button
             @click.stop="addItem($event)"
+            id="add-new-item-btn"
             :disabled="newItemName.length <= 0"
             class="md-raised md-primary add-button"
             color="primary"
@@ -49,8 +50,8 @@
           >
             <div
               v-for="(item, index) in todoItems"
-              :key="index"
-              class="example-box"
+              :key="index+'-todo'"
+              class="example-box todo-list-item"
             >
               {{ item.description }}
               <md-button class="md-icon-button md-btn-accent" 
@@ -73,7 +74,7 @@
           >
             <div
             v-for="(item, index) in doneItems"
-              :key="index" class="example-box" :class="index">
+              :key="index+'-done'" class="example-box" :class="index">
               {{ item.description }}
               <div class="icons-box">
                 <md-button 
