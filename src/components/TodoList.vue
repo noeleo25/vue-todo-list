@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main-container">
     <div class="input-container">
       <form class="md-layout item-form">
         <div 
@@ -63,11 +63,12 @@
         </div>
       </div>
 
-      <div class="example-container">
+      <div class="example-container" id="done">
         <h2>Done</h2>
 
         <div
           class="example-list"
+          
         >
           <draggable
             :list="doneItems" group="list-items" class="draggable-box"
@@ -136,6 +137,10 @@
 </script>
 
 <style scoped>
+.main-container{
+  max-width: 900px;
+  margin: auto;
+}
 .item-form{
   max-width: 300px;
   margin-left: auto;
@@ -181,13 +186,21 @@
 .input-container {
   margin-top: 26px;
 }
-
+.todo-area{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+#done{
+  margin-top: 40px;
+}
 .example-container {
   width: 400px;
   max-width: 100%;
-  margin: 0 25px 25px 0;
+  /*margin: 0 25px 25px 0;
   display: inline-block;
-  vertical-align: top;
+  vertical-align: top;*/
 }
 
 .example-list {
@@ -204,7 +217,7 @@
 }
 
 .example-box {
-  padding: 20px 10px;
+  padding: 10px 10px;
   border-bottom: solid 1px #ccc;
   color: rgba(0, 0, 0, 0.87);
   display: flex;
@@ -227,9 +240,10 @@
     width: 100%;
     max-width: 100%;
     vertical-align: bottom;
-    text-align: inherit;
+    text-align: left;
     box-sizing: content-box;
     height: 48px !important;
+    padding-top: 10px !important;
 }
 .example-box:last-child {
   border: none;
@@ -238,6 +252,21 @@
   display: grid;
   grid-auto-flow: column;
   grid-column-gap: 10px;
+}
+
+@media (min-width: 992px) {
+  .todo-area{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+  }
+  #done{
+    margin-top: 0;
+  }
+  .example-box{
+    padding: 20px 10px;
+  }
 }
 
 </style>

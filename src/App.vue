@@ -26,6 +26,7 @@ body{
 }
 html, body{
   height: 100%;
+  min-width: fit-content;
   background: #70e1f5;
   background: linear-gradient(to top, #ffd194, #70e1f5);
 }
