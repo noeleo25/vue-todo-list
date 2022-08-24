@@ -4,11 +4,12 @@ const express = require('express') // Third Party library.
 
 const app = express()
 
-let buildDir = path.join(__dirname, '..', 'dist')
-app.use(express.static(buildDir))
-app.use('*', function(req, res) {
-  let indexPath = path.join(buildDir, 'index.html')
-  res.sendFile(indexPath)
+//here we are configuring dist to serve app files
+app.use('/', serveStatic(path.join(__dirname, '/dist')))
+
+// this * route is to serve project on different page routes except root `/`
+app.get(/.*/, function (req, res) {
+    res.sendFile(path.join(__dirname, '/dist/index.html'))
 })
 
 process.env.PORT = process.env.PORT ? process.env.PORT : 3300
