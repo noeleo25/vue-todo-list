@@ -2,6 +2,8 @@
 
 A responsive designed simple todo/done list with draggable items created with VUE CLI
 
+Demo [here](https://celadon-jalebi-151d97.netlify.app/)
+
 ## Implemented Libraries
 * [Vue draggable](https://www.npmjs.com/package/vuedraggable) - allow to drag and drop elements on the list
 * [Vue draggable](https://www.creative-tim.com/vuematerial) - to apply styles similar to angular material design library
